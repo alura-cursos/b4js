@@ -23,6 +23,33 @@
         
         <script src="https://cdn.socket.io/4.4.0/socket.io.js"></script>
 
+        <script>
+            var socket = io('ws://localhost:3000')
+
+            const elemento = document.querySelector("#valor")
+
+
+            socket.on('cotação', valor => {
+                console.log(valor)
+                
+                var valorAntigo = elemento.textContent;
+            
+                if (valor > valorAntigo){
+                    elemento.classList.add("text-success")
+                    elemento.classList.remove("text-danger")
+                }
+                else {
+                    elemento.classList.add("text-danger")
+                    elemento.classList.remove("text-success")
+                }
+
+                elemento.textContent = valor
+
+
+            })
+
+        </script>
+
     </div>
 </body>
 </html>
